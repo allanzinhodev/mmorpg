@@ -1,0 +1,15 @@
+{
+  "phases": [
+    {
+      "id": 1,
+      "name": "Fundação",
+      "features": [
+        { "id": "f1-1-binary-parsers",  "status": "done",        "tests": "passing" },
+        { "id": "f1-2-map-render",      "status": "done",        "tests": "passing" },
+        { "id": "f1-otclient-lean",     "status": "done",        "tests": "passing" },
+        { "id": "f1-3-sprite-system",   "status": "pending",     "tests": "none" },
+        { "id": "f1-4-creature-move",   "status": "pending",     "tests": "none" }
+      ]
+    }
+  ]
+}

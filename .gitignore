@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+.env
+build/
+vcpkg_installed/
+client-cpp/vc17/.vs/
+client-cpp/vc17/x64/

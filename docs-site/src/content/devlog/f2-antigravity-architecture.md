@@ -33,7 +33,16 @@ O OTClientV8 carrega um legado de compatibilidade com versões do Tibia que vari
 - A versão do jogo (`G.clientVersion`) foi forçada para `1`.
 - A estrutura de arquivos `data/things/1098` foi extinta. O cliente carrega diretamente de `data/graphics/sertaria.spr` e `.dat`.
 
+## 3. O "Enxugador" (Asset Stripper & Atlas Generation)
+O repositório base possuía quase 100 MB de recursos gráficos pesados e milhares de itens irrelevantes para o novo jogo. O Antigravity construiu uma solução personalizada em NodeJS.
+
+**A Ferramenta (`sertaria/tools/asset-stripper`)**:
+- Extrai apenas a base estrita necessária (Grama base, paredes, o Citizen Outfit).
+- Reconstrói os binários `sertaria.dat` e `sertaria.spr` com menos de 3 MB combinados!
+- Ao mesmo tempo, ele gera um mosaico PNG (`atlas.png`) e um JSON que mapeia todas as posições XY das sprites pra serem renderizadas pelo Client Web com puro JavaScript!
+
 ## Setup Rápido (Nova Máquina)
 1. Certifique-se de instalar as dependências de clonagem através do script `sertaria/scripts/setup_deps.ps1`.
-2. Para compilar o servidor motor C++: Abra o `Developer Command Prompt` do Visual Studio, navegue até `sertaria/server/src/` e rode: `cl.exe /EHsc main.cpp ws2_32.lib`. Isso vai gerar o `sertaria_server.exe`.
-3. Para compilar o cliente C++: Abra a solution `sertaria/client-cpp/vc17/otclient.sln` no Visual Studio 2026 e compile (precisará do `vcpkg` integrado e rodando `vcpkg install --triplet x86-windows-static`).
+2. Para gerar os assets gráficos ultraleves, rode: `cd sertaria/tools/asset-stripper && node index.js` (Isso gerará os `.dat` e `.spr` na pasta e já copiará o atlas para o web client).
+3. Para compilar o servidor motor C++: Abra o `Developer Command Prompt` do Visual Studio, navegue até `sertaria/server/src/` e rode: `cl.exe /EHsc main.cpp ws2_32.lib`. Isso vai gerar o executável.
+4. Para compilar o cliente C++: Abra a solution `sertaria/client-cpp/vc17/otclient.sln` no Visual Studio e compile com o vcpkg.
